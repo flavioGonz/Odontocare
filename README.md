@@ -90,7 +90,7 @@ http://localhost/clinica/public/
 
 🔑 Credenciales de ejemplo
 Usuario: admin
-Contraseña: flavio20
+Contraseña: admin
 La contraseña está almacenada con hash Argon2ID por seguridad.
 
 🎨 Capturas (ejemplos)
