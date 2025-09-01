@@ -1,0 +1,173 @@
+/* Version: 3.3 (Base Estable) */
+
+/* --- Importación de Fuentes y Reseteo Básico --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*, *:after, *:before { box-sizing: border-box; }
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.5;
+    background-color: #e8e8e8; /* COLOR DE FONDO ACTUALIZADO */
+    color: #333;
+}
+
+/* --- Paleta de colores --- */
+:root {
+    --primary-color-menu: #009087; /* Color original del menú */
+    --hover-color: #c5c5c5;
+    --border-color: #4A8D9F;
+    --accent-color: #f39c12;
+    /* Colores para los botones neumorfistas */
+    --btn-primary-color: #009087;
+    --btn-secondary-color: #95a5a6;
+    --btn-danger-color: #e74c3c;
+}
+
+/* --- Menú y Layout --- */
+.sidebar-nav { 
+    list-style: none; margin: 0; padding: 0.75rem; background-color: #fff;
+    display: flex; flex-direction: column; border-radius: 12px;
+    box-shadow: 0 10px 50px 0 #e5e7eb; position: fixed;
+    top: 50%; left: 1.5rem; transform: translateY(-50%); z-index: 100;
+}
+.sidebar-nav li.menu-separator { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+.sidebar-nav li + li { margin-top: .75rem; }
+.sidebar-nav a {
+    color: #000; text-decoration: none; display: flex; align-items: center;
+    justify-content: center; width: 3rem; height: 3rem; border-radius: 10px;
+    position: relative; transition: background-color 0.15s ease;
+}
+.sidebar-nav a:hover, .sidebar-nav a:focus, .sidebar-nav a.active { background-color: var(--hover-color); outline: 0; }
+.sidebar-nav a svg { width: 1.5rem; height: 1.5rem; }
+.sidebar-nav .user-avatar a { padding: 0; background: transparent !important; }
+.sidebar-nav .user-avatar img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--border-color); transition: transform 0.2s ease;
+}
+.sidebar-nav .user-avatar a:hover img { transform: scale(1.1); border-color: #fff; }
+.sidebar-nav a span {
+    position: absolute; background-color: var(--hover-color); white-space: nowrap;
+    padding: .5rem 1rem; border-radius: 6px; left: calc(100% + 1.5rem);
+    transform-origin: center left; transform: scale(0); opacity: 0;
+    transition: .15s ease; font-weight: 500;
+}
+.sidebar-nav a span:before {
+    content: ""; display: block; width: 12px; height: 12px; position: absolute;
+    background-color: var(--hover-color); left: -5px; top: 50%;
+    transform: translateY(-50%) rotate(45deg); border-radius: 3px;
+}
+.sidebar-nav a:hover span, .sidebar-nav a:focus span { transform: scale(1); opacity: 1; }
+.page-content {
+    position: relative; margin-left: 7rem; padding: 2rem; width: calc(100% - 7rem);
+}
+.page-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;
+}
+.page-content h1 { font-size: 2.2rem; color: #2c3e50; margin-bottom: 1rem; }
+.page-content p { font-size: 1.1rem; line-height: 1.7; max-width: 800px; }
+#table-wrapper {
+    background-color: #fff; padding: 1rem; border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* --- ESTILO DE BOTONES NEUMORFISTAS --- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  transition: all 0.2s ease-in; position: relative; overflow: hidden;
+  z-index: 1; color: #090909; padding: 0.6em 1.5em; cursor: pointer;
+  font-size: 1rem; font-weight: 500; border-radius: 0.5em;
+  background: #e8e8e8; border: 1px solid #e8e8e8;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  -webkit-appearance: none;
+}
+.btn:active {
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+.btn:before, .btn:after {
+  content: ""; position: absolute; left: 50%; display: block;
+  width: 160%; border-radius: 50%;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.btn:before {
+  transform: translateX(-50%) scaleY(1) scaleX(1.25); top: 100%; height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.btn:after {
+  transform: translateX(-50%) scaleY(1) scaleX(1.45); top: 180%; height: 190%;
+}
+.btn:hover { color: #ffffff !important; }
+.btn:hover:before {
+  top: -35%; transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+.btn:hover:after {
+  top: -45%; transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+.btn.btn-primary:after, .btn.btn-primary:hover:before, .btn.btn-primary:hover:after { background-color: var(--btn-primary-color); }
+.btn.btn-primary:hover { border: 1px solid var(--btn-primary-color); }
+.btn.btn-primary:hover svg { fill: #ffffff; }
+.btn.btn-secondary:after, .btn.btn-secondary:hover:before, .btn.btn-secondary:hover:after { background-color: var(--btn-secondary-color); }
+.btn.btn-secondary:hover { border: 1px solid var(--btn-secondary-color); color: #090909 !important; }
+.btn.btn-danger:after, .btn.btn-danger:hover:before, .btn.btn-danger:hover:after { background-color: var(--btn-danger-color); }
+.btn.btn-danger:hover { border: 1px solid var(--btn-danger-color); }
+
+/* --- ESTILOS PARA MODALES --- */
+.modal-backdrop, .modal { display: none; opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; transition: opacity 0.3s ease; }
+.modal-backdrop { background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px); }
+.modal { display: flex; align-items: center; justify-content: center; z-index: 1001; }
+body.modal-open .modal-backdrop, body.modal-open .modal { display: flex; opacity: 1; }
+.modal-content { background-color: white; padding: 1.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 500px; max-width: 90vw; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e0e0e0; }
+.modal-header h2 { margin: 0; font-size: 1.5rem; color: #2c3e50; }
+.close-modal { background: none; border: none; font-size: 2rem; cursor: pointer; color: #95a5a6; }
+.modal-body { padding: 1.5rem 0; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e; }
+.form-group input { width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 8px; font-size: 1rem; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+
+/* ... (Todo el CSS de la v3.3 va aquí sin cambios) ... */
+
+/* ======================================================= */
+/* --- (NUEVO) ESTILO DE BOTONES NEUMORPHIC CUADRADOS --- */
+/* ======================================================= */
+.btn-neumorphic {
+  container-type: inline-size;
+  aspect-ratio: 1/1;
+  border: 0.5rem solid transparent;
+  border-radius: 1rem;
+  color: hsl(0 0% 10%);
+  background: none;
+  display: grid;
+  place-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  
+  --shadow: 
+    -.5rem -.5rem 1rem hsl(0 0% 100% / .75),
+    .5rem .5rem 1rem hsl(0 0% 50% / .5);
+  box-shadow: var(--shadow);
+  outline: none;  
+  transition: all 0.1s;
+}
+
+.btn-neumorphic:hover, .btn-neumorphic:focus-visible {
+    color: hsl(199, 98%, 48%); /* Un azul clínico */
+    scale: 1.1;
+}
+
+.btn-neumorphic:active, .btn-neumorphic.active {
+    box-shadow:
+      var(--shadow),
+      inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
+      inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
+    color: hsl(199, 98%, 48%);
+    scale: 1;
+}
+.btn-neumorphic > i { font-size: 31cqi; }
+.btn-neumorphic > span {
+    font-family: system-ui, sans-serif;
+    font-size: 14cqi;
+    font-weight: 500;
+}

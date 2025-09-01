@@ -1,0 +1,22 @@
+[
+{"type":"header","version":"5.2.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"clinica_db"},
+{"type":"table","name":"citas","database":"clinica_db","data":
+[
+{"id":"3","paciente_id":"2","doctor_asignado":"Dr. Muelas","fecha_cita":"2023-11-02","diente_tratado":"N\/A","descripcion":"Revisión semestral y fluorización.","debe":"75.00","haber":"250.00"},
+{"id":"4","paciente_id":"3","doctor_asignado":"Dr. Muelas","fecha_cita":"2023-09-28","diente_tratado":"Pieza 46","descripcion":"Endodoncia y preparación para corona.","debe":"320.50","haber":"100.00"}
+]
+}
+,{"type":"table","name":"estudios","database":"clinica_db","data":
+[
+
+]
+}
+,{"type":"table","name":"pacientes","database":"clinica_db","data":
+[
+{"id":"2","foto":"default_avatar.png","nombre":"Carlos","apellido":"Martínezn","cedula":"V-87654321","email":"carlos.m@email.com","whatsapp":"584129876543","fecha_nacimiento":"1978-11-22","debe":"0.00","haber":"250.00","ultima_consulta":"2023-11-02","fecha_creacion":"2025-08-27 15:24:15"},
+{"id":"3","foto":"default_avatar.png","nombre":"Sofía","apellido":"Rodríguez","cedula":"E-98765432","email":"sofia.r@email.com","whatsapp":"584141112233","fecha_nacimiento":"2001-01-30","debe":"320.50","haber":"100.00","ultima_consulta":"2023-09-28","fecha_creacion":"2025-08-27 15:24:15"},
+{"id":"4","foto":"default_avatar.png","nombre":"Flavio","apellido":"Gonzalez","cedula":"42162858","email":"flaviogonzalezdesign@gmail.com","whatsapp":"+59899185402","fecha_nacimiento":null,"debe":"0.00","haber":"0.00","ultima_consulta":null,"fecha_creacion":"2025-08-27 19:24:16"}
+]
+}
+]

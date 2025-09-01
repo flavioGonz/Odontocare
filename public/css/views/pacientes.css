@@ -1,0 +1,99 @@
+/* Version: 4.0 */
+/* Estilos para la nueva tabla de pacientes con edición "in-line" */
+
+/* --- Contenedor Principal de la Tabla --- */
+.tabla-pacientes-contenedor {
+    width: 100%;
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.tabla-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--color-texto-principal, #212529);
+}
+
+/* --- Lógica de Foco y Desenfoque (Efecto Blur) --- */
+.tabla-pacientes:focus-within tbody tr:not(:focus-within) {
+    filter: blur(2px);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.tabla-pacientes tbody tr:focus-within {
+    background-color: var(--color-fila-seleccionada, #eef5ff);
+}
+
+.tabla-pacientes tbody tr {
+    transition: 0.2s ease-out;
+    transition-property: filter, opacity, background-color;
+    border-bottom: 1px solid var(--border-color);
+}
+.tabla-pacientes tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* --- Celdas y Cabeceras --- */
+.tabla-pacientes th, .tabla-pacientes td {
+    padding: 0;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.tabla-pacientes th {
+    padding: 12px 16px;
+    font-weight: 600;
+    color: var(--color-texto-secundario, #6c757d);
+    background-color: #fcfdff;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* --- Columnas Específicas --- */
+.col-foto { width: 70px; padding: 0 16px; }
+.col-foto img {
+    width: 36px; height: 36px; aspect-ratio: 1 / 1;
+    border-radius: 50%; object-fit: cover; display: block;
+}
+
+.col-acciones { width: 100px; }
+
+/* --- Inputs Editables --- */
+.tabla-pacientes td input {
+    font-family: inherit; font-size: 0.95rem; color: inherit;
+    background-color: transparent; border: none;
+    width: 100%; height: 56px; /* Aumentamos un poco la altura */
+    padding: 6px 16px; box-sizing: border-box; cursor: pointer;
+    border-radius: 0;
+}
+.tabla-pacientes td input:hover:not(:focus) {
+    background-color: var(--color-input-hover, #f1f3f5);
+}
+.tabla-pacientes td input:focus {
+    cursor: text;
+    outline: 2px solid var(--btn-primary-color);
+    outline-offset: -2px;
+    background-color: #ffffff;
+}
+
+/* --- Botones de Acción en la Fila --- */
+.acciones-celda {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; height: 56px;
+}
+.btn-accion {
+    background: none; border: none; padding: 6px; border-radius: 50%;
+    cursor: pointer; display: grid; place-items: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+    color: var(--color-texto-secundario, #6c757d);
+}
+.btn-accion:hover { transform: scale(1.15); }
+.btn-accion.btn-guardar:hover { color: var(--color-icono-guardar, #198754); }
+.btn-accion.btn-eliminar:hover { color: var(--color-icono-eliminar, #dc3545); }
+.btn-accion svg { width: 20px; height: 20px; }
