@@ -6,6 +6,7 @@ Incluye funcionalidades para manejo de pacientes, historial clínico, tratamient
 ---
 
 <img width="1895" height="872" alt="image" src="https://github.com/user-attachments/assets/a2410c0d-b20c-4306-82bf-f16e1b222c1f" />
+<img width="1880" height="937" alt="image" src="https://github.com/user-attachments/assets/ef7ea200-c070-42a7-b18a-5846a1ef9063" />
 
 
 ## ✨ Características principales
