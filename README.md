@@ -1,61 +1,159 @@
+# 🦷 Sistema de Gestión para Clínica Dental
+
+Proyecto web desarrollado en **PHP, MySQL, JS, HTML y CSS** para la gestión integral de una clínica odontológica.  
+Incluye funcionalidades para manejo de pacientes, historial clínico, tratamientos, estudios, finanzas y control de insumos.  
+
+---
+
+## ✨ Características principales
+
+- **Login seguro (Argon2ID)** para staff de la clínica.  
+- **Gestión de pacientes** con foto de perfil, datos de contacto y consultas.  
+- **Historial de Tratamientos y Citas**  
+  - Agregar, editar y eliminar registros en vivo.  
+  - Manejo de **balance financiero** (Debe / Haber).  
+  - Adjuntar **audios** por cita (grabar en vivo, reproducir con botón ▶️, eliminar).  
+- **Estudios y Placas**  
+  - Subida de imágenes o PDFs.  
+  - Visualización con **slider interactivo**.  
+- **Notificaciones internas**.  
+- **Configuración de la clínica**.  
+
+---
+
+## 📂 Estructura del proyecto
+
 clinica_dental/
-├── public/
-│   ├── index.php             <-- PUNTO DE ENTRADA ÚNICO (Front Controller)
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── main.js
-│   ├── images/
-│   │   ├── logo.png
-│   │   └── avatars/
-│   └── .htaccess             <-- Para URLs amigables (opcional pero recomendado)
+├── public/ # Carpeta pública (Front Controller)
+│ ├── index.php # Enrutador principal
+│ ├── css/ # Estilos
+│ ├── js/ # Scripts frontend
+│ ├── images/ # Logo, íconos, avatars
+│ ├── audio/consultas/ # Audios asociados a citas
+│ └── .htaccess # URLs amigables (Apache)
 │
 ├── src/
-│   ├── core/
-│   │   ├── database.php      <-- Lógica de conexión a la BBDD
-│   │   └── functions.php     <-- Funciones globales (ej. sanitizar datos)
-│   │
-│   ├── includes/
-│   │   ├── header.php        <-- Parte superior del HTML (doctype, head, inicio body)
-│   │   ├── footer.php        <-- Parte inferior del HTML (scripts, cierre body/html)
-│   │   └── sidebar.php       <-- El menú de navegación que creamos
-│   │
-│   └── views/
-│       ├── inicio.php
-│       ├── pacientes.php
-│       ├── historial_clinico.php
-│       ├── tratamientos.php
-│       ├── lista_precios.php
-│       ├── notificaciones.php
-│       ├── insumos.php
-│       ├── configuracion.php
-│       └── 404.php           <-- Página para errores
+│ ├── core/ # Núcleo de la app
+│ │ ├── database.php # Conexión PDO a MySQL
+│ │ └── functions.php # Funciones globales
+│ │
+│ ├── includes/ # Componentes comunes
+│ │ ├── header.php
+│ │ ├── footer.php
+│ │ └── sidebar.php
+│ │
+│ └── views/ # Vistas principales
+│ ├── inicio.php
+│ ├── pacientes.php
+│ ├── paciente_perfil.php
+│ ├── tratamientos.php
+│ ├── historial_clinico.php
+│ ├── configuracion.php
+│ └── 404.php
+│
+├── api/ # Endpoints AJAX (REST-like)
+│ └── pacientes/
+│ ├── get_perfil.php
+│ ├── add_cita.php
+│ ├── update_cita.php
+│ ├── delete_cita.php
+│ ├── upload_estudio.php
+│ ├── upload_audio.php
+│ └── delete_audio.php
 │
 └── config/
-    └── config.php            <-- Credenciales de BBDD, claves API, etc.
+└── config.php # Credenciales y configuración
+
+---
+
+## ⚙️ Instalación y uso
+
+1. Clonar el repositorio:  
+   ```bash
+   git clone https://github.com/tuusuario/clinica_dental.git
+Copiar el proyecto a la carpeta de tu servidor local (ej. C:\xampp\htdocs\clinica).
+
+Configurar la base de datos:
+
+Importar el archivo SQL incluido (clinica_db.sql).
+
+Ajustar credenciales en config/config.php.
+
+Asegurarse de tener PHP ≥ 8.1 con soporte para argon2id.
+
+(XAMPP 3.3.0 recomendado).
+
+Iniciar el servidor y acceder en el navegador:
 
 
-Explicación Detallada de Cada Parte
-1. Carpeta Raíz (clinica_dental/)
-Es la carpeta principal que contiene todo tu proyecto. No se expone directamente a la web.
+http://localhost/clinica/public/
 
-2. public/
-Esta es la única carpeta que debe ser accesible desde el navegador. Tu servidor web (Apache, Nginx) debe apuntar aquí. Esto es crucial para la seguridad, ya que evita que los usuarios accedan a archivos sensibles como tu configuración de base de datos.
-index.php: Este es el Front Controller. Todas las peticiones de los usuarios llegarán a este archivo. Su trabajo es cargar la configuración, iniciar la sesión y, basándose en la URL, decidir qué "vista" mostrar desde la carpeta src/views/.
-css/, js/, images/: Carpetas para tus "assets" estáticos. El navegador necesita acceder a ellos para renderizar la página correctamente.
-.htaccess: (Para servidores Apache). Permite crear URLs amigables, por ejemplo, que www.tuclinica.com/pacientes internamente cargue index.php?page=pacientes.
+🔑 Credenciales de ejemplo
+Usuario: admin
+Contraseña: flavio20
+La contraseña está almacenada con hash Argon2ID por seguridad.
 
-3. src/ (Source o Código Fuente)
-El "cerebro" de tu aplicación. Esta carpeta no es accesible públicamente.
-core/: Contiene la lógica principal y fundamental de la app.
-database.php: Un archivo que gestiona la conexión a tu base de datos (MySQL, PostgreSQL, etc.).
-functions.php: Funciones de ayuda que usarás en todo el proyecto (ej: isLoggedIn(), formatDate(), etc.).
-includes/: Piezas de la interfaz que se repiten en casi todas las páginas.
-header.php: Incluye el <head>, el título de la página y el inicio del <body>.
-sidebar.php: El código de la barra de navegación lateral que creamos.
-footer.php: Cierra las etiquetas principales e incluye los archivos JavaScript antes de </body>.
-views/: El contenido específico de cada página. Son plantillas que se "incrustan" dentro de la estructura principal definida por header.php y footer.php. Por ejemplo, pacientes.php contendrá la tabla y el formulario para gestionar pacientes.
+🎨 Capturas (ejemplos)
+Login moderno con animaciones
 
-4. config/
-Contiene los archivos de configuración. Al estar fuera de la carpeta public/, es inaccesible desde el navegador, lo cual es vital para la seguridad.
-config.php: Aquí defines constantes con tus credenciales de base de datos, claves de API, y otras configuraciones del entorno.
+Perfil de paciente con historial y slider de estudios
+
+🛠️ Tecnologías usadas
+Backend: PHP 8, MySQL, PDO
+
+Frontend: HTML5, CSS3, JavaScript (ES6)
+
+Animaciones: CSS3, Splide.js (slider)
+
+Seguridad: Hash Argon2ID para contraseñas, rutas protegidas con sesiones
+
+🚀 Roadmap
+ Login staff con Argon2ID
+
+ Gestión de pacientes
+
+ Historial editable con audios adjuntos
+
+ Estudios con slider
+
+ Roles de usuario (admin, recepcionista, doctor)
+
+ Dashboard de estadísticas
+
+ Multi-idioma (ES/EN)
+
+🤝 Contribución
+¡Toda ayuda es bienvenida!
+
+Haz un fork.
+
+Crea una rama con tu feature:
+
+bash
+Copiar código
+git checkout -b feature/nueva-funcionalidad
+Commit de tus cambios:
+
+bash
+Copiar código
+git commit -m "Agregada nueva funcionalidad"
+Push a la rama:
+
+bash
+Copiar código
+git push origin feature/nueva-funcionalidad
+Abre un Pull Request.
+
+📜 Licencia
+Este proyecto se distribuye bajo licencia MIT.
+Libre para uso personal y comercial con atribución.
+
+👨‍💻 Autor
+Flavio Gonzalez
+Cofundador de Infratec Networks
+Apasionado por la tecnología, redes y seguridad electrónica.
+
+Vive en Uruguay.
+
+
+---
