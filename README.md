@@ -5,6 +5,9 @@ Incluye funcionalidades para manejo de pacientes, historial clínico, tratamient
 
 ---
 
+<img width="1895" height="872" alt="image" src="https://github.com/user-attachments/assets/a2410c0d-b20c-4306-82bf-f16e1b222c1f" />
+
+
 ## ✨ Características principales
 
 - **Login seguro (Argon2ID)** para staff de la clínica.  
